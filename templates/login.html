@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="formDiv">
+      <h1>Log In</h1>
+        <form class="form-style-4" method="post">
+            <label for="username">
+                <span>User Name</span>
+                <input type="text" name="username" id="username" placeholder="Username" required/>
+            </label>
+            <label for="password">
+                <span>Password</span>
+                <input type="text" name="password" id="password" placeholder="Password" required/>
+            </label>
+            <div class="btn-block">
+              <p>By clicking Register, you agree on our Privacy Policy for MyBank</a>.</p>
+              <button type="submit" href="/">Login</button>
+            </div>
+        </form>
+        <div class="btn-block">
+            <a href="/register">
+                <button id="loginBtn" href="/login">Don't Have Account?</button>
+            </a>
+            <a href="/resetPwd">
+                <button id="loginBtn" href="/login">Reset Password?</button>
+            </a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="formDiv">
+      <h1>Reset Password</h1>
+        <form class="form-style-4" method="post">
+            <label for="username">
+                <span>User Name</span>
+                <input type="text" name="username" id="username" placeholder="Username" required/>
+            </label>
+            <label for="ssn">
+                <span>SSN</span>
+                <input type="text" name="ssn" id="ssn" placeholder="SSN" required/>
+            </label>
+            <label for="password">
+                <span>Password</span>
+                <input type="password" name="password" id="password" placeholder="Password" required/>
+            </label>
+            <label for="repassword">
+                <span>Re-enter Password</span>
+                <input type="password" name="repassword" id="repassword" placeholder="Password" required/>
+            </label>
+            <div class="btn-block">
+              <p>By clicking Register, you agree on our Privacy Policy for MyBank</a>.</p>
+              <button type="submit" href="/">Submit</button>
+            </div>
+        </form>
+        <div class="btn-block">
+            <a href="/register">
+                <button id="loginBtn" href="/login">Don't Have Account?</button>
+            </a>
+        </div>
+    </div>
+{% endblock %}

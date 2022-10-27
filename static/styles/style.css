@@ -1,0 +1,248 @@
+html,
+body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 100%;
+    background: honeydew;
+}
+
+body,
+div,
+h1,
+form,
+input,
+p {
+	padding: 0;
+	margin: 0;
+	outline: none;
+	font-family: Roboto, Arial, sans-serif;
+	font-size: 16px;
+	color: black;
+}
+
+h1 {
+	font-family: "Futura", Georgia, 'Times New Roman', Times, serif;
+	padding: 10px 0;
+	font-size: 40px;
+	font-weight: 300;
+	text-align: center;
+}
+
+p {
+	font-size: 12px;
+}
+
+hr {
+	color: #a9a9a9;
+	opacity: 0.3;
+}
+
+.formDiv {
+	max-width: 500px;
+	margin: auto;
+	margin-top: 20px;
+	border-radius: 5px;
+	border: solid 1px #D9FFA9;
+	box-shadow: 4px 2px lightgreen;
+	background: white;
+}
+
+.btn-block {
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	text-align: center;
+}
+
+.btn-block p {
+	margin: 12px 0 8px 0;
+	font-size: 10px;
+}
+
+.btn-block button {
+	text-decoration: none;
+	color: black;
+	background: transparent;
+	border: 1px solid #4CAF50;
+	margin-bottom: 9px;
+	border-radius: 3px;
+	box-shadow: 2px 2px 2px 1px cadetblue;
+}
+
+form .btn-block button{
+	margin-bottom: 0px;
+}
+
+.btn-block button:hover {
+	text-decoration: none;
+	color: black;
+	border-radius: 3px;
+	box-shadow: 2px 2px 2px 1px darkseagreen;
+	transition: 0.5s;
+	background: snow;
+}
+
+.command {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	margin: 0 auto;
+	width: 50%;
+	margin-top: 30px;
+	border: 3px solid green;
+	padding: 10px;
+}
+
+.command a {
+	text-decoration: none;
+	font-family: "Futura", Georgia, 'Times New Roman', Times, serif;
+	color: black;
+	text-shadow: 2px 2px rgb(183, 238, 166);
+	font-size: 30px;
+}
+
+.flash {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 20px;
+	color: #f44336;
+	font-size: 20px;
+	font-family: "Futura", Georgia, 'Times New Roman', Times, serif;
+}
+
+/* Table Styles */
+
+.table-wrapper {
+	margin: 10px 70px 70px;
+	box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
+}
+
+.fl-table {
+	border-radius: 5px;
+	font-size: 12px;
+	font-weight: normal;
+	border: none;
+	border-collapse: collapse;
+	width: 100%;
+	max-width: 100%;
+	white-space: nowrap;
+	background-color: white;
+}
+
+.fl-table td,
+.fl-table th {
+	text-align: center;
+	padding: 8px;
+}
+
+.fl-table td {
+	border-right: 1px solid #f8f8f8;
+	font-size: 12px;
+}
+
+.fl-table td a {
+	text-decoration: none;
+	color: black;
+	padding: 2px 4px;
+	border-radius: 3px;
+	box-shadow: 2px 2px 2px 1px rgba(0, 0, 255, .2);
+	/*background: #4FC3A1;*/
+}
+
+.fl-table td a:hover {
+	text-decoration: none;
+	color: black;
+	padding: 2px 4px;
+	border-radius: 3px;
+	box-shadow: 2px 2px 2px 1px darkseagreen;
+	transition: 0.5s;
+	background: snow;
+}
+
+.fl-table thead th {
+	color: #ffffff;
+	background: #4FC3A1;
+}
+
+
+.fl-table thead th:nth-child(odd) {
+	color: #ffffff;
+	background: #324960;
+}
+
+.fl-table tr:nth-child(even) {
+	background: #F8F8F8;
+}
+
+/* Form */
+.form-style-4 {
+	width: 450px;
+	font-size: 16px;
+	padding: 30px 30px 15px 30px;
+}
+
+.form-style-4 input[type=submit],
+.form-style-4 input[type=button],
+.form-style-4 input[type=text],
+.form-style-4 input[type=email],
+.form-style-4 textarea,
+.form-style-4 label {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 16px;
+
+}
+
+.form-style-4 label {
+	display: block;
+	margin-bottom: 10px;
+}
+
+.form-style-4 label>span {
+	display: inline-block;
+	float: left;
+	width: 150px;
+}
+
+.form-style-4 input[type=text],
+.form-style-4 input[type=email] {
+	background: transparent;
+	border: none;
+	border-bottom: 1px dashed #83A4C5;
+	width: 275px;
+	outline: none;
+	padding: 0px 0px 0px 0px;
+	font-style: italic;
+}
+
+.form-style-4 textarea {
+	font-style: italic;
+	padding: 0px 0px 0px 0px;
+	background: transparent;
+	outline: none;
+	border: none;
+	border-bottom: 1px dashed #83A4C5;
+	width: 275px;
+	overflow: hidden;
+	resize: none;
+	height: 20px;
+}
+
+.form-style-4 textarea:focus,
+.form-style-4 input[type=text]:focus,
+.form-style-4 input[type=email]:focus,
+.form-style-4 input[type=email] :focus {
+	border-bottom: 1px dashed #D9FFA9;
+}
+
+.form-style-4 input[type=submit],
+.form-style-4 input[type=button] {
+	background: #576E86;
+	border: none;
+	padding: 8px 10px 8px 10px;
+	border-radius: 5px;
+	color: #A8BACE;
+}
+
+.form-style-4 input[type=submit]:hover,
+.form-style-4 input[type=button]:hover {
+	background: #394D61;
+}
