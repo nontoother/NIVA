@@ -1,4 +1,4 @@
-# SWE 266P - Bank App
+# SWE 276P - Capstone Project
 
 Tech stack: 
 
