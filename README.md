@@ -7,13 +7,6 @@ Tech stack:
 
 ## Setup Instructions
 
-### Clone the Project
-
-```shell
-git clone https://github.com/JiayiLi1999/bankapp_group15.git
-cd bankapp_group15
-```
-
 ### Setup Python Virtual Environment
 
 ```shell
