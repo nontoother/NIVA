@@ -1,38 +1,32 @@
-from enum import Enum
-
 import speech_recognition as sr
 
 
 class SpeechToText:
     def __init__(self):
-        self.recognizer = sr.Recognizer()
+        self.text_script = None
 
-    def convert_speech_to_text(self, input_language="en-US"):
+    def callback_recognize_audio(self, recognizer, audio):
+        # using google to recognize audio, support multi-languages, default is English
         try:
-            # use the microphone as source for input.
-            with sr.Microphone() as source:
-
-                # the recognizer adjust the energy threshold based on the surrounding noise level
-                self.recognizer.adjust_for_ambient_noise(source, duration=0.1)
-
-                # listens for the user's input
-                audio = self.recognizer.listen(source, timeout=3)
-
-                # using google to recognize audio, support multi-languages
-                text = self.recognizer.recognize_google(audio, language=input_language)
-                return text.lower()
+            transcript = recognizer.recognize_google(audio)
+            self.text_script = transcript.lower()
 
         except sr.UnknownValueError:
             print("Cannot convert to text")
-
         except sr.WaitTimeoutError:
-            pass
+            print("Wait too long")
+        except sr.RequestError as e:
+            print("RequestError: ", e)
 
+    def convert_speech_to_text_in_background(self):
+        recognizer = sr.Recognizer()
+        mic = sr.Microphone()
+        # use the microphone as source for input.
+        with mic as source:
+            # the recognizer adjust the energy threshold based on the surrounding noise level
+            recognizer.adjust_for_ambient_noise(source, duration=0.1)
 
-if __name__ == "__main__":
-    stt = SpeechToText()
-    text_script = stt.convert_speech_to_text()
-    print(text_script)
-
+        # listens for the user's input
+        recognizer.listen_in_background(source, self.callback_recognize_audio)
 
 

@@ -9,13 +9,13 @@ class Command:
 
     def process_query(self, text_script):
         if "wikipedia" in text_script:
-            self.search_whitelist(text_script)
+            return self.search_wikipedia(text_script)
 
         elif "joke" in text_script:
-            self.tell_joke()
+            return self.tell_joke()
 
         else:
-            pass
+            return None
 
 
     def search_whitelist(self, query):
@@ -26,16 +26,16 @@ class Command:
 
     def search_wikipedia(self, query):
         query = query.replace("wikipedia", "")
-        wiki_prefix = "According to wikipedia, "
-        return wiki_prefix + wikipedia.summary(query, sentences=3)
-
-    def show_date(self):
-        return datetime.datetime.now().strftime("%A %B %d, %Y")
-
-    def show_time(self):
-        return datetime.datetime.now().strftime("%I %M %p")
+        if query != "":
+            try:
+                wiki_prefix = "According to wikipedia, "
+                return wiki_prefix + wikipedia.summary(query, sentences=3)
+            except:
+                print("some error in finding at wikipedia")
 
     def tell_joke(self):
         return pyjokes.get_joke()
+
+
 
 

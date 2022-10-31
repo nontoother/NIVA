@@ -1,10 +1,41 @@
+import random
 from enum import Enum
 import pyttsx3
+from pydub import AudioSegment
+from pydub.playback import play
+
+RATE_UPPER = 200
+RATE_LOWER = 150
 
 
 class VoiceGender(Enum):
     MAN = 0
     WOMAN = 1
+
+
+# Set the octave which determine the audio will be thicker or thinner, value can be [-1,1]
+def change_pitch_from_file(audio_file, octaves):
+    sound = AudioSegment.from_file(audio_file, format="wav")
+    sample_rate = int(sound.frame_rate * (2.0 ** octaves))
+
+    # Sample rate is changed and audio become very weird. So, to fix this:
+    temp_sound = sound._spawn(sound.raw_data, overrides={'frame_rate': sample_rate})
+    # Now, For converting sample rate to standard audio CD sample rate, which is 44.1K:
+    pitch_sound = temp_sound.set_frame_rate(44100)
+    pitch_sound.export(audio_file, format="wav")
+
+
+def play_sound_from_file(audio_file):
+    play_sound = AudioSegment.from_wav(audio_file)
+    play(play_sound)  # pip install simpleaudio
+
+
+def generate_random_voice_settings():
+    gender_list = [VoiceGender.MAN, VoiceGender.WOMAN]
+    gender = random.choice(gender_list)
+    rate = random.randint(RATE_LOWER, RATE_UPPER)
+    octaves = random.uniform(-1.0, 1.0)
+    return [gender, rate, octaves]
 
 
 class TextToSpeech:
@@ -40,22 +71,3 @@ class TextToSpeech:
     def set_speech_volume(self, speech_volume):
         self.engine.setProperty('volume', speech_volume)
         self.engine.runAndWait()
-
-
-if __name__ == "__main__":
-
-    text_script = "This is a test for NIVA project"
-    file_name = "test.wav"
-
-    tts = TextToSpeech()
-    tts.select_voice_gender(VoiceGender.WOMAN)
-    tts.set_speech_rate(150)
-    tts.set_speech_volume(1.0)
-    tts.convert_text_to_speech(text_script)
-    tts.save_voice_to_file(text_script, file_name)
-
-    # todo: change pitch
-    # https://batulaiko.medium.com/how-to-pitch-shift-in-python-c59b53a84b6d
-
-
-

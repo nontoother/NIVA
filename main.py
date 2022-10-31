@@ -1,47 +1,53 @@
 import threading
+import time
 
 from command import Command
 from speech_to_text import SpeechToText
-from text_to_speech import TextToSpeech
-
-
-def listen():
-    while True:
-        print("Listening .......")
-        text_script = stt.convert_speech_to_text()
-        if text_script is not None:
-            if "hello" in text_script:
-                activate_flag.set()
-                print("How can I help you")
-                #tts.convert_text_to_speech("How can I help you")
-
-            if "stop" in text_script:
-                activate_flag.clear()
-                print("See you next time")
-                #tts.convert_text_to_speech("See you next time")
-
-
-def run_NIVA():
-    while activate_flag.is_set():
-        pass
-
+from text_to_speech import TextToSpeech, generate_random_voice_settings, change_pitch_from_file, play_sound_from_file
 
 if __name__ == "__main__":
+
+    file_name = "test.wav"
 
     tts = TextToSpeech()
     stt = SpeechToText()
     cmd = Command()
 
-    activate_flag = threading.Event()
-    activate_flag.clear()
+    stt.convert_speech_to_text_in_background()
 
-    # thread 1 keep listening (start or stop flag)
-    listening_thread = threading.Thread(target=listen, args=())
+    while True:
 
-    # thread 2 handle the NIVA operation
-    # todo
+        if stt.text_script is not None:
+            print(stt.text_script)
+            response_script = cmd.process_query(stt.text_script)
+            print(response_script)
+            stt.text_script = None
 
-    listening_thread.start()
-    listening_thread.join()
+            if response_script is not None:
+                voice_parameter = generate_random_voice_settings()
+                gender = voice_parameter[0]
+                rate = voice_parameter[1]
+                octaves = voice_parameter[2]
+
+                # basic settings (gender, rate, volume)
+                tts.select_voice_gender(gender)
+                tts.set_speech_rate(rate)
+                tts.set_speech_volume(1.0)
+                tts.save_voice_to_file(response_script, file_name)  # need to save to file in order to change pitch
+
+                # change pitch
+                change_pitch_from_file(file_name, octaves)
+                play_sound_from_file(file_name)
+
+        time.sleep(0)
+
+
+
+
+
+
+
+
+
 
 
