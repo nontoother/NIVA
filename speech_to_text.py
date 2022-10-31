@@ -12,11 +12,11 @@ class SpeechToText:
             self.text_script = transcript.lower()
 
         except sr.UnknownValueError:
-            print("Cannot convert to text")
+            pass
         except sr.WaitTimeoutError:
-            print("Wait too long")
+            pass
         except sr.RequestError as e:
-            print("RequestError: ", e)
+            pass
 
     def convert_speech_to_text_in_background(self):
         recognizer = sr.Recognizer()
@@ -27,6 +27,6 @@ class SpeechToText:
             recognizer.adjust_for_ambient_noise(source, duration=0.1)
 
         # listens for the user's input
-        recognizer.listen_in_background(source, self.callback_recognize_audio)
+        recognizer.listen_in_background(source, self.callback_recognize_audio, phrase_time_limit=5)
 
 

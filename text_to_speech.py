@@ -6,6 +6,8 @@ from pydub.playback import play
 
 RATE_UPPER = 200
 RATE_LOWER = 150
+OCTAVES_UPPER = 0.5
+OCTAVES_LOWER = -0.1
 
 
 class VoiceGender(Enum):
@@ -34,7 +36,7 @@ def generate_random_voice_settings():
     gender_list = [VoiceGender.MAN, VoiceGender.WOMAN]
     gender = random.choice(gender_list)
     rate = random.randint(RATE_LOWER, RATE_UPPER)
-    octaves = random.uniform(-1.0, 1.0)
+    octaves = random.uniform(OCTAVES_LOWER, OCTAVES_UPPER)
     return [gender, rate, octaves]
 
 
