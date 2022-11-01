@@ -6,12 +6,8 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-@app.route("/")
+@app.route('/')
 @cross_origin()
-def helloWorld():
-  return "Hello, cross-origin-world!"
-
-@app.route('/profile')
 def my_profile():
     # response = jsonify({"name": '123', "about": "shipped"})
     # response.headers.add("Access-Control-Allow-Origin", "*")
