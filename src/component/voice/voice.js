@@ -38,9 +38,7 @@ export default class voice extends Component {
             <div className="App">
               <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                  NIVA is ready to start...
-                </p>
+                {!this.state.audio && <p> NIVA is ready to start... </p>}
                 <div className="controls">
                     <button onClick={this.toggleMicrophone}>
                     {this.state.audio ? 'Stop microphone' : 'Get microphone input'}
