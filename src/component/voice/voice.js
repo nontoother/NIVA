@@ -1,52 +1,57 @@
-import { useState } from 'react'
-import axios from "axios";
+import { Component, useState } from 'react'
+import AudioAnalyser from './AudioAnalyser';
 import logo from '../../resources/logo.svg';
 import './voice.css';
 
-export default function Voice() {
+export default class voice extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          audio: null
+        };
+        this.toggleMicrophone = this.toggleMicrophone.bind(this);
+      }
 
-   // new line start
-  const [profileData, setProfileData] = useState(null)
+    async getMicrophone() {
+        const audio = await navigator.mediaDevices.getUserMedia({
+            audio: true,
+            video: false
+        });
+        this.setState({ audio });
+    }
 
-  function getData() {
-    axios({
-      method: "GET",
-      mode:"cors",
-      url:"http://localhost:5000/profile",
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json',
-      },
-    })
-    .then((response) => {
-      const res =response.data
-      setProfileData(({
-        profile_name: res.name,
-        about_me: res.about}))
-    }).catch((error) => {
-      if (error.response) {
-        console.log(error.response)
-        console.log(error.response.status)
-        console.log(error.response.headers)
+    stopMicrophone() {
+        this.state.audio.getTracks().forEach(track => track.stop());
+        this.setState({ audio: null });
+    }
+
+    toggleMicrophone() {
+        if (this.state.audio) {
+          this.stopMicrophone();
+        } else {
+          this.getMicrophone();
         }
-    })}
-    //end of new line 
+      }
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          NIVA is ready to start...
-        </p>
+    render() {
+        return (
+            <div className="App">
+              <header className="App-header">
+                <img src={logo} className="App-logo" alt="logo" />
+                <p>
+                  NIVA is ready to start...
+                </p>
+                <div className="controls">
+                    <button onClick={this.toggleMicrophone}>
+                    {this.state.audio ? 'Stop microphone' : 'Get microphone input'}
+                    </button>
+                </div>
+                {this.state.audio ? <AudioAnalyser audio={this.state.audio} /> : ''}
 
-        {/* <p>To get your profile details: </p><button onClick={getData}>Click me</button>
-        {profileData && <div>
-              <p>Profile name: {profileData.profile_name}</p>
-              <p>About me: {profileData.about_me}</p>
+              </header>
             </div>
-        } */}
-      </header>
-    </div>
-  );
+          );
+    }
+
 }
+
