@@ -1,34 +1,24 @@
 import React, { useState } from 'react';
 import ReactModal from 'react-modal';
-
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-  },
-};
-
+import './Notification.css'
 
 export default function Notification(props) {
-    const [showModal, setShowModal] = useState(props.status)
-    function openModal() {
-        setShowModal(true)
-    }
+    const [showModal, setShowModal] = useState({...props.status})
+
     function closeModal() {
         setShowModal(false)
+        props.askAccess()
     }
+    
     return (
         <div>
-            {/* <button onClick={openModal}>Trigger Modal</button> */}
             <ReactModal 
             isOpen={showModal}
-            contentLabel="Minimal Modal Example"
+            className="Modal"
+            overlayClassName="Overlay"
             >
-            <button onClick={closeModal}>Close Modal</button>
+            <p>Please allow the microphone access</p>
+            <button onClick={closeModal}>Okay</button>
             </ReactModal>
         </div>
     );

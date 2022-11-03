@@ -27,7 +27,7 @@
     filter: invert(74%) sepia(20%) saturate(1349%) hue-rotate(162deg) brightness(91%) contrast(103%);
   }
 
-  .App button {
+  button {
     background: #5E5DF0;
     border-radius: 999px;
     box-shadow: #5E5DF0 0 10px 20px -10px;
@@ -52,6 +52,7 @@
   #transcript {
     font-family: 'Courier New', Courier, monospace;
     color: aliceblue;
+    overflow: scroll;
     margin-bottom: 20px;
   }
   
