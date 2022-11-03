@@ -48,6 +48,12 @@
     word-break: break-word;
     border: 0;
   }
+
+  #transcript {
+    font-family: 'Courier New', Courier, monospace;
+    color: aliceblue;
+    margin-bottom: 20px;
+  }
   
   @keyframes App-logo-spin {
     from {
