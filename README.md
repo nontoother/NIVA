@@ -1,17 +1,18 @@
-# SWE 266P - Bank App
+# SWE 276P - Capstone Project
+## Non-human Intelligent Virtual Assistant
 
 Tech stack: 
-
 - Flask
-- SQLite3
+- React
+- NLP
 
 ## Setup Instructions
 
 ### Clone the Project
 
 ```shell
-git clone https://github.com/JiayiLi1999/bankapp_group15.git
-cd bankapp_group15
+git clone https://github.com/nontoother/NIVA.git
+cd NIVA
 ```
 
 ### Setup Python Virtual Environment
@@ -32,32 +33,37 @@ pip install Flask
 
 ```shell
 # Bash (MacOS/Linux)
-export FLASK_APP=core
+export FLASK_APP=backend/base.py
 export FLASK_ENV=development
 
 # Fish
-set -x FLASK_APP core
+set -x FLASK_APP backend/base.py
 set -x FLASK_ENV development
 
 # CMD
-set FLASK_APP=core
+set FLASK_APP=backend/base.py
 set FLASK_ENV=development
 
 # Powershell
-$env:FLASK_APP = "core"
+$env:FLASK_APP = "backend/base.py"
 $env:FLASK_ENV = "development"
 ```
+### Initialize the NPM
+```
+npm install
+```
 
-### Initialize the Database
+### Initialize the Backend
 
-```shell
-flask init-db
+```
+npm run start-backend
 ```
 
 ### Run the Application
 
-```shell
-flask run
+```
+npm start
 ```
 
-Now the bank app is running on http://127.0.0.1:5000
+Now the bank app is running on http://localhost:3000
+the backend is at http://127.0.0.1:5000/
