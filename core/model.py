@@ -1,13 +1,13 @@
 from transformers import pipeline
 
 question_answerer = pipeline('question-answering')
-res = question_answerer({
-    'question': 'What is your gender?',
-    'context': 'NIVA is an intelligent virtual assistant in the form of software that will respond to users’ '
-               'requests with an innovative, non-default, gender-neutral and anti-discriminative response. '
-})
+# res = question_answerer({
+#     'question': 'What is your gender?',
+#     'context': 'NIVA is an intelligent virtual assistant in the form of software that will respond to users’ '
+#                'requests with an innovative, non-default, gender-neutral and anti-discriminative response. '
+# })
 res2 = question_answerer({
-    'question': 'What is your gender?',
+    'question': 'What does NIVA mean/stand for?',
     'context': 'NIVA is an intelligent virtual assistant in the form of software that will respond to users’ '
                'requests with an innovative, non-default, gender-neutral and anti-discriminative response. '
                "Nonhuman Intelligent Virtual Assistant(NIVA) is an artificial intelligence program that challenges "

@@ -46,5 +46,5 @@ def get_context(text):
 
 
 # res = get_context("What is your sex?")
-res = get_context("When did you born")
+res = get_context("When is your birthday?")
 print(res)
