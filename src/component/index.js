@@ -3,6 +3,7 @@ import React from 'react'
 // import About from './About/About'
 import Voice from './voice/voice'
 // import Footer from './Footer/Footer'
+import './index.css'
 
 function Page () {
   return(

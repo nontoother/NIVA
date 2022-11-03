@@ -62,13 +62,12 @@ export default class voice extends Component {
             <div className="App">
                 <img src={logo} className="App-logo" alt="logo" />
                 {!this.state.audio && <Waiting/>}
+                {this.state.audio ? <AudioAnalyser audio={this.state.audio} /> : ''}
                 <div className="controls">
                     <button onClick={this.toggleMicrophone}>
                     {this.state.audio ? 'Stop microphone' : 'Get microphone input'}
                     </button>
                 </div>
-                {this.state.audio ? <AudioAnalyser audio={this.state.audio} /> : ''}
-
             </div>
           );
     }
