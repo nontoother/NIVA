@@ -1,7 +1,7 @@
 import React from 'react'
 // import Header from './Header/Header'
 // import About from './About/About'
-import Voice from './voice/voice'
+import Home from './homepage/Home'
 // import Footer from './Footer/Footer'
 import './index.css'
 
@@ -13,7 +13,7 @@ function Page () {
             {/* <Header /> */}
           </section>
         </div>
-        <Voice/>
+        <Home/>
         <section id="footer" className="footer">
           <div>
             {/* <Footer /> */}

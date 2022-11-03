@@ -1,11 +1,11 @@
 import { Component, useState } from 'react'
 import axios from "axios";
-import AudioAnalyser from './AudioAnalyser';
+import AudioAnalyser from '../voice/AudioAnalyser'
 import logo from '../../resources/logo2.svg';
 import Waiting from '../text/Waiting';
-import './voice.css';
+import './Home.css';
 
-export default class voice extends Component {
+export default class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
