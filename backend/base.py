@@ -13,6 +13,9 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 def my_profile():
     questionText = request.args.get('questionText')
     questionAudio = request.args.get('questionAudio')
+    # question answering
+
+    # text to audio
     
     response_body = {
         "questionText": questionText,
