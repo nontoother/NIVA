@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_cors import CORS, cross_origin
-from flask import current_app, flash, jsonify, make_response, redirect, request, url_for
+from flask import request
+from backend import QA_model
 
 app = Flask(__name__)
 # cors = CORS(app)
@@ -14,11 +15,11 @@ def my_profile():
     questionText = request.args.get('questionText')
     questionAudio = request.args.get('questionAudio')
     # question answering
-
+    res = QA_model.answer(questionText)
     # text to audio
     
     response_body = {
-        "questionText": questionText,
+        "questionText": res,
         "questionAudio": questionAudio,
     }
 
