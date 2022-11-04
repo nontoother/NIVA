@@ -31,20 +31,20 @@ def calculate_similarity(text, question_list):
     return cosine_sim[0][1:]
 
 
-def get_context(text):
+def get_stored_answer(result):
     question_list = get_question_list()
-    result = calculate_similarity(text, question_list)
+    # result = calculate_similarity(question, question_list)
     # the threshold to answer the question in given QA pairs
-    if max(result) > 0.1:
-        most_similar_question = np.argmax(result)
-        with open('QA_pairs.json', 'r') as qa:
-            qa_pairs = json.load(qa)["QAlist"]
-            answer_list = qa_pairs[most_similar_question]["answer"]
-            return random.choice(answer_list)
-    else:
-        return None
+    # if max(result) > 0.1:
+    most_similar_question = np.argmax(result)
+    with open('QA_pairs.json', 'r') as qa:
+        qa_pairs = json.load(qa)["QAlist"]
+        answer_list = qa_pairs[most_similar_question]["answer"]
+        return random.choice(answer_list)
+    # else:
+    #     return None
 
 
 # res = get_context("What is your sex?")
-res = get_context("When is your birthday?")
-print(res)
+# res = get_stored_answer("When is your birthday?")
+# print(res)
