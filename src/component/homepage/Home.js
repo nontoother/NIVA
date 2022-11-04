@@ -5,14 +5,12 @@ import logo from '../../resources/logo2.svg'
 import Waiting from '../text/Waiting'
 import Notification from '../modal/Notification'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
-
 import './Home.css'
 
 export default function Home () {
 
   const [audio, setAudio] = useState(null)
   const [access, setAccess] = useState(false)
-  // const [questionAudio, setQuestionAudio] = useState(null)
   const [questionAudio, setQuestionAudio] = useState(null)
 
   const {
@@ -21,16 +19,13 @@ export default function Home () {
   } = useSpeechRecognition()
 
   function sendQuestion (question) {
-    axios({
-      method: 'Post',
-      url: 'http://127.0.0.1:5000/profile'
-    })
+    axios.post('http://127.0.0.1:5000/profile', null, { params: {
+      questionText: question
+    }})
       .then((response) => {
         const res = response.data
         console.log(res)
-        setQuestionAudio(({
-          profileName: res.name,
-          aboutMe: res.about}))
+        setQuestionAudio(res.questionText)
       }).catch((error) => {
         if (error.response) {
           console.log(error.response)
@@ -62,9 +57,12 @@ export default function Home () {
 
   function stopMicrophone () {
     SpeechRecognition.stopListening()
-    sendQuestion(transcript)
+    if(transcript !== null) {
+      sendQuestion(transcript)
+    }
     audio.getTracks().forEach(track => track.stop())
     setAudio(null)
+    setQuestionAudio(null)
   }
 
   function toggleMicrophone () {
@@ -90,7 +88,7 @@ export default function Home () {
           {audio ? 'Stop' : 'Start Talking'}
         </button>
       </div>
-      {questionAudio != null && <p id='transcript'>{questionAudio.profileName}</p>
+      {questionAudio != null && <p id='transcript'>What I heard is: {questionAudio}</p>
       }
     </div>
   )

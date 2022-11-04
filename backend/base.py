@@ -11,9 +11,12 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 @app.route('/profile', methods = ['POST', 'GET'])
 @cross_origin()
 def my_profile():
+    questionText = request.args.get('questionText')
+    questionAudio = request.args.get('questionAudio')
+    
     response_body = {
-        "audio": "Nagato",
-        "about" :"Hello! I'm a full stack developer that loves python and javascript"
+        "questionText": questionText,
+        "questionAudio": questionAudio,
     }
 
     return response_body
