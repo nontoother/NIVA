@@ -8,17 +8,17 @@ import './index.css'
 function Page () {
   return(
     <div>
-        <div>
-          <section id="hero" className="d-flex flex-column justify-content-center">
-            {/* <Header /> */}
-          </section>
-        </div>
-        <Home/>
-        <section id="footer" className="footer">
-          <div>
-            {/* <Footer /> */}
-          </div>
+      <div>
+        <section id="hero" className="d-flex flex-column justify-content-center">
+          {/* <Header /> */}
         </section>
+      </div>
+      <Home/>
+      <section id="footer" className="footer">
+        <div>
+          {/* <Footer /> */}
+        </div>
+      </section>
     </div>
   )
 }

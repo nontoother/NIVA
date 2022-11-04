@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-// import axios from 'axios'
+import axios from 'axios'
 import AudioAnalyser from '../voice/AudioAnalyser'
 import logo from '../../resources/logo2.svg'
 import Waiting from '../text/Waiting'
@@ -12,10 +12,33 @@ export default function Home () {
 
   const [audio, setAudio] = useState(null)
   const [access, setAccess] = useState(false)
+  // const [questionAudio, setQuestionAudio] = useState(null)
+  const [questionAudio, setQuestionAudio] = useState(null)
+
   const {
     transcript,
     resetTranscript
   } = useSpeechRecognition()
+
+  function sendQuestion (question) {
+    axios({
+      method: 'Post',
+      url: 'http://127.0.0.1:5000/profile'
+    })
+      .then((response) => {
+        const res = response.data
+        console.log(res)
+        setQuestionAudio(({
+          profileName: res.name,
+          aboutMe: res.about}))
+      }).catch((error) => {
+        if (error.response) {
+          console.log(error.response)
+          console.log(error.response.status)
+          console.log(error.response.headers)
+        }
+      })
+  }
 
   function checkPermissions () {
     const permissions = navigator.mediaDevices.getUserMedia({audio: true, video: false})
@@ -39,6 +62,7 @@ export default function Home () {
 
   function stopMicrophone () {
     SpeechRecognition.stopListening()
+    sendQuestion(transcript)
     audio.getTracks().forEach(track => track.stop())
     setAudio(null)
   }
@@ -56,7 +80,7 @@ export default function Home () {
 
   return (
     <div className="App">
-      <Notification status={access} askAccess={checkPermissions}/>
+      <Notification isShowModal={access} askAccess={checkPermissions}/>
       <img src={logo} className="App-logo" alt="logo" />
       {!audio && <Waiting/>}
       {audio ? <AudioAnalyser audio={audio} /> : ''}
@@ -66,6 +90,8 @@ export default function Home () {
           {audio ? 'Stop' : 'Start Talking'}
         </button>
       </div>
+      {questionAudio != null && <p id='transcript'>{questionAudio.profileName}</p>
+      }
     </div>
   )
 

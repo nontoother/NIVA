@@ -3,7 +3,7 @@ import ReactModal from 'react-modal'
 import './Notification.css'
 
 export default function Notification (props) {
-  const [showModal, setShowModal] = useState({...props.status})
+  const [showModal, setShowModal] = useState(props.isShowModal)
 
   function closeModal () {
     setShowModal(false)

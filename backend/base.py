@@ -3,21 +3,18 @@ from flask_cors import CORS, cross_origin
 from flask import current_app, flash, jsonify, make_response, redirect, request, url_for
 
 app = Flask(__name__)
-cors = CORS(app)
+# cors = CORS(app)
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
+
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-@app.route('/')
+@app.route('/profile', methods = ['POST', 'GET'])
 @cross_origin()
 def my_profile():
-    response = jsonify({"name": '123', "about": "shipped"})
-    # response.headers.add("Access-Control-Allow-Origin", "*")
-    # response.headers.add('Access-Control-Allow-Headers', "*")
-    # response.headers.add('Access-Control-Allow-Methods', "*")
+    response_body = {
+        "audio": "Nagato",
+        "about" :"Hello! I'm a full stack developer that loves python and javascript"
+    }
 
-    # response = make_response()
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    response.headers.add("Access-Control-Allow-Headers", "*")
-    response.headers.add("Access-Control-Allow-Methods", "*")
-    # return response
-    return response
+    return response_body
 
