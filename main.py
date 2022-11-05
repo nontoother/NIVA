@@ -2,11 +2,11 @@ import time
 
 from command import process_query
 from speech_to_text import SpeechToText
-from text_to_speech import TextToSpeech, generate_random_voice_settings, change_pitch_from_file, play_sound_from_file
+from text_to_speech_offline import TextToSpeech, generate_random_voice_settings, change_pitch_from_file, play_sound_from_file
 
 if __name__ == "__main__":
 
-    file_name = "response_voice.wav"
+    file_name = "response_voice.mp3"
 
     tts = TextToSpeech()
     stt = SpeechToText()

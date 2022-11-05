@@ -9,6 +9,9 @@ RATE_LOWER = 150
 OCTAVES_UPPER = 0.5
 OCTAVES_LOWER = -0.1
 
+# It works fully offline
+# choose among different voices that are installed on your system
+#https://www.thepythoncode.com/article/convert-text-to-speech-in-python
 
 class VoiceGender(Enum):
     MAN = 0
@@ -17,18 +20,18 @@ class VoiceGender(Enum):
 
 # Set the octave which determine the audio will be thicker or thinner, value can be [-1,1]
 def change_pitch_from_file(audio_file, octaves):
-    sound = AudioSegment.from_file(audio_file, format="wav")
-    sample_rate = int(sound.frame_rate * (2.0 ** octaves))
+    sound = AudioSegment.from_file(audio_file, format="mp3")
+    #sample_rate = int(sound.frame_rate * (2.0 ** octaves))
 
     # Sample rate is changed and audio become very weird. So, to fix this:
-    temp_sound = sound._spawn(sound.raw_data, overrides={'frame_rate': sample_rate})
+    #temp_sound = sound._spawn(sound.raw_data, overrides={'frame_rate': sample_rate})
     # Now, For converting sample rate to standard audio CD sample rate, which is 44.1K:
-    pitch_sound = temp_sound.set_frame_rate(44100)
-    pitch_sound.export(audio_file, format="wav")
+    #pitch_sound = temp_sound.set_frame_rate(44100)
+    #pitch_sound.export(output_file, format="wav")
 
 
 def play_sound_from_file(audio_file):
-    play_sound = AudioSegment.from_wav(audio_file)
+    play_sound = AudioSegment.from_mp3(audio_file)
     play(play_sound)  # pip install simpleaudio
 
 
@@ -54,15 +57,22 @@ class TextToSpeech:
         self.engine.runAndWait()
 
     # gender_index: either VoiceGender.MAN or VoiceGender.WOMAN
-    def select_voice_gender(self, gender):
-        voices = self.engine.getProperty('voices')
-        voice_id = None
-        if gender == VoiceGender.MAN:
-            voice_id = voices[0].id
-        if gender == VoiceGender.WOMAN:
-            voice_id = voices[1].id
-        self.engine.setProperty('voice', voice_id)
-        self.engine.runAndWait()
+    def select_voice_gender(self):
+        voices = self.engine.getProperty('voice')
+        print(voices)
+# todo: instead of select gender, let it choose id based on different os platform
+        # for v in voices:
+        #     self.engine.setProperty('voice', v.id)
+        #     self.engine.say("how are you nice to meet you")
+        #     print(v.id)
+
+        # voice_id = None
+        # if gender == VoiceGender.MAN:
+        #     voice_id = voices[0].id
+        # if gender == VoiceGender.WOMAN:
+        #     voice_id = voices[1].id
+        # self.engine.setProperty('voice', voice_id)
+        # self.engine.runAndWait()
 
     # integer speech rate in words per minute
     def set_speech_rate(self, speech_rate):
@@ -73,3 +83,12 @@ class TextToSpeech:
     def set_speech_volume(self, speech_volume):
         self.engine.setProperty('volume', speech_volume)
         self.engine.runAndWait()
+
+
+if __name__ == "__main__":
+    response_script = "This is a test program for NIVA design for backend"
+    tts = TextToSpeech()
+    tts.set_speech_rate(80)
+    tts.select_voice_gender()
+
+    #tts.convert_text_to_speech(response_script)
