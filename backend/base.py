@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_cors import CORS, cross_origin
 from flask import request
-from backend import QA_model
+import QA_model
 
 app = Flask(__name__)
 # cors = CORS(app)
