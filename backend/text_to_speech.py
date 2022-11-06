@@ -40,7 +40,7 @@ def change_pitch(octaves, raw_audio_file, modified_audio_file):
 
 def play_voice_from_file(audio_file):
     sound = AudioSegment.from_mp3(audio_file)
-    play(sound)  # pip install simpleaudio
+    play(sound) 
 
 
 
