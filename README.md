@@ -34,7 +34,7 @@ pip install simpleaudio
 py -3 -m venv venv
 venv\Scripts\activate
 pip install Flask
-pip install tensorflow=2.9.1
+pip install tensorflow
 pip install transformers==4.3.3
 pip install scikit-learn
 pip install numpy
