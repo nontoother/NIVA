@@ -22,25 +22,11 @@ cd NIVA
 python3 -m venv venv
 . venv/bin/activate
 pip install Flask
-pip install tensorflow=2.9.1
-pip install transformers==4.3.3
-pip install scikit-learn
-pip install numpy
-pip install gTTS
-pip install pydub
-pip install simpleaudio
 
 # Windows
 py -3 -m venv venv
 venv\Scripts\activate
 pip install Flask
-pip install tensorflow
-pip install transformers==4.3.3
-pip install scikit-learn
-pip install numpy
-pip install gTTS
-pip install pydub
-pip install simpleaudio
 ```
 
 ### Set Environment Variables
