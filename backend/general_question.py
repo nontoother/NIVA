@@ -1,5 +1,4 @@
 import nltk
-from transformers import pipeline
 
 be_list = ['is', 'was', 'am', 'is', 'are', 'was', 'were', 'be']
 do_list = ['do', 'does', 'did', 'done', 'doing']
@@ -68,8 +67,7 @@ def modify(inputStr, answerStr):
     return result
 
 
-def get_general_question_answer(question):
-    unmasker = pipeline('fill-mask', model='bert-base-uncased')
+def get_general_question_answer(question, unmasker):
     parsed_question = modify(question, '')
     answer = unmasker(parsed_question)
     return answer[0]['sequence']
