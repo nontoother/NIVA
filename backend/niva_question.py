@@ -1,16 +1,16 @@
 import json
-from transformers import pipeline
 
 
-def get_answer_about_niva(question):
-    question_answerer = pipeline('question-answering')
+def get_answer_about_niva(question, question_answerer):
+    context = ""
     with open('context/niva_context.json', 'r') as niva_context_json:
-        context = json.load(niva_context_json)["niva_context"]
+        context_list = json.load(niva_context_json)["niva_context"]
+        for con in context_list:
+            context += con
 
     res = question_answerer({
         'question': question,
         'context': context
-
     })
 
     return res["answer"]
