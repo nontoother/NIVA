@@ -11,7 +11,7 @@ venv/
 env*
 
 # voice
-/voice
+voice/
 
 # testing
 /coverage
