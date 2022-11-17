@@ -7,6 +7,14 @@ import logo2 from '../../resources/NIVAlogo.svg'
 import Notification from '../modal/Notification'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import './Home.css'
+// import idling from '../../resources/NIVA.fbx'
+// import { useLoader } from '@react-three/fiber'
+// import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
+// import { PrimitiveProps } from '@react-three/fiber'
+// import model from '../../Loader'
+// import App from '../../App'
+// import { Box } from '@react-three/drei'
+// import { Camera } from 'three'
 
 export default function Home () {
 
@@ -95,11 +103,18 @@ export default function Home () {
 
   checkPermissions()
 
+  // model.then(object=>{
+  //   App.add(object)
+  //   let s = 0.5
+  //   object.scale.set(s, s, s)
+  // })
+
   return (
     <div className="App">
       <Notification isShowModal={access} askAccess={checkPermissions}/>
       {!audio}
       {audio ? <AudioAnalyser audio={audio} /> : ''}
+      {/* <primitive object={Scene}/> */}
       <p id='transcript'>{transcript}</p>
       <div className="controls">
         <button id = "imageButton" className="App-logo"> <img id = "image" src ={img0} onClick={toggleMicrophone}/>
