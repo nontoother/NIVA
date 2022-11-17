@@ -7,6 +7,12 @@ import logo2 from '../../resources/NIVAlogo.svg'
 import Notification from '../modal/Notification'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import './Home.css'
+import { Canvas } from '@react-three/fiber'
+import { useLoader } from '@react-three/fiber'
+import { OrbitControls } from '@react-three/drei'
+import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
+import { Suspense } from 'react'
+import { Environment } from '@react-three/drei'
 // import idling from '../../resources/NIVA.fbx'
 // import { useLoader } from '@react-three/fiber'
 // import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
@@ -101,6 +107,12 @@ export default function Home () {
     }
   }
 
+  const Scene = () => {
+    const fbx = useLoader(FBXLoader, 'NIVA.fbx')
+  
+    return <primitive object={fbx} scale={0.05} />
+  }
+
   checkPermissions()
 
   // model.then(object=>{
@@ -116,10 +128,17 @@ export default function Home () {
       {audio ? <AudioAnalyser audio={audio} /> : ''}
       {/* <primitive object={Scene}/> */}
       <p id='transcript'>{transcript}</p>
-      <div className="controls">
+      <Canvas>
+        <Suspense fallback={null}>
+          <Scene onClick={toggleMicrophone}/>
+          <OrbitControls />
+          <Environment background = {true} preset={'apartment'} />
+        </Suspense>
+      </Canvas>
+      {/* <div className="controls">
         <button id = "imageButton" className="App-logo"> <img id = "image" src ={img0} onClick={toggleMicrophone}/>
         </button>
-      </div>
+      </div> */}
       {questionAudio != null && <p id='transcript'>What I heard is: {questionAudio}</p>
       }
     </div>
