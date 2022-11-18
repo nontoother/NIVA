@@ -1,4 +1,5 @@
 import React from 'react'
+import './App.css'
 // import Page from './component/index'
 // // import { useLoader } from '@react-three/fiber'
 // // import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
@@ -121,7 +122,7 @@ export default function App () {
       <p id='transcript'>{transcript}</p>
       {questionAudio != null && <p id='transcript'>What I heard is: {questionAudio}</p>
       } */}
-      <Canvas>
+      <Canvas className="app-canvas">
         <Suspense fallback={null}>
           <Scene id='image' />
           <OrbitControls />
