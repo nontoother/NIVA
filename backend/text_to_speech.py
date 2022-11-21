@@ -1,46 +1,43 @@
-from enum import Enum
-from gtts import gTTS
 from pydub.playback import play
 from pydub import AudioSegment
-
-class LocalAccent(Enum):
-    AUSTRALIA = 0
-    UK = 1
-    US = 2
-    CANADA = 3
-    INDIA = 4
-    IRELAND = 5
-    SOUTH_AFRICA = 6
-
-
-accent_dict = {
-    LocalAccent.AUSTRALIA: "com.au",
-    LocalAccent.UK: "co.uk",
-    LocalAccent.US: "com",
-    LocalAccent.CANADA: "ca",
-    LocalAccent.INDIA: "co.in",
-    LocalAccent.IRELAND: "ie",
-    LocalAccent.SOUTH_AFRICA: "co.za"
-}
-
-
-def convert_text_to_audio_file(text, accent, audio_file):
-    top_level_domain = accent_dict[accent]
-    sound_obj = gTTS(text=text, tld=top_level_domain, lang='en', slow=False)
-    sound_obj.save(audio_file)  # .mp3 format eg: "test.mp3"
-
-
-def change_pitch(octaves, raw_audio_file, modified_audio_file):
-    sound = AudioSegment.from_mp3(raw_audio_file)
-    sample_rate = int(sound.frame_rate * (2.0 ** octaves))
-    sound_obj = sound._spawn(sound.raw_data, overrides={'frame_rate': sample_rate})
-    modified_sound = sound_obj.set_frame_rate(44100)
-    modified_sound.export(modified_audio_file, format="mp3")
-
+from google.cloud import texttospeech
+import os
 
 def play_voice_from_file(audio_file):
     sound = AudioSegment.from_mp3(audio_file)
     play(sound) 
+
+def synthesize_text(text, voice_file):
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'context/client_service_key.json'
+    client = texttospeech.TextToSpeechClient()
+
+    input_text = texttospeech.SynthesisInput(text=text)
+
+    # Note: the voice can also be specified by name.
+    # Names of voices can be retrieved with client.list_voices().
+    # https://cloud.google.com/text-to-speech/docs/voices
+    voice = texttospeech.VoiceSelectionParams(
+        language_code="en-US",
+        name="en-US-Standard-A",
+        ssml_gender=texttospeech.SsmlVoiceGender.MALE,
+    )
+
+    audio_config = texttospeech.AudioConfig(
+        audio_encoding=texttospeech.AudioEncoding.MP3,
+        speaking_rate=0,
+        pitch=0,
+        volume_gain_db=0,
+    )
+
+    response = client.synthesize_speech(
+        request={"input": input_text, "voice": voice, "audio_config": audio_config}
+    )
+
+    # The response's audio_content is binary.
+    with open(voice_file, "wb") as out:
+        out.write(response.audio_content)
+        print('Audio content written to file "output.mp3"')
+
 
 
 

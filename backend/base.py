@@ -21,22 +21,10 @@ def my_profile():
     # question answering
     res = QA_model.answer(questionText)
     # text to audio
-    transcript = res
-    voice_file = "voice/raw_speech.mp3"
-    modified_voice_file = "voice/modified_pitch_speech.mp3"
-
-    # random spectrum for voice settings
-    low_pitch = -0.5
-    high_pitch = 0.3
-    accent = random.choice(list(text_to_speech.LocalAccent))
-    octave = random.uniform(low_pitch, high_pitch)
-
-    text_to_speech.convert_text_to_audio_file(transcript, accent, voice_file)
+    voice_file = "voice/voice_output.mp3"
+    text_to_speech.synthesize_text(res, voice_file)
     text_to_speech.play_voice_from_file(voice_file)
 
-    text_to_speech.change_pitch(octave, voice_file, modified_voice_file)
-    text_to_speech.play_voice_from_file(modified_voice_file)
-    
     response_body = {
         "questionText": res,
         "questionAudio": questionAudio,
