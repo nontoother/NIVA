@@ -7,12 +7,6 @@ import logo2 from '../../resources/NIVAlogo.svg'
 import Notification from '../modal/Notification'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import './Home.css'
-import { Canvas } from '@react-three/fiber'
-import { useLoader } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
-import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
-import { Suspense } from 'react'
-import { Environment } from '@react-three/drei'
 // import idling from '../../resources/NIVA.fbx'
 // import { useLoader } from '@react-three/fiber'
 // import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
@@ -21,12 +15,23 @@ import { Environment } from '@react-three/drei'
 // import App from '../../App'
 // import { Box } from '@react-three/drei'
 // import { Camera } from 'three'
+import { Canvas } from '@react-three/fiber'
+import { useLoader } from '@react-three/fiber'
+import { OrbitControls } from '@react-three/drei'
+import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
+import { Suspense } from 'react'
+import { Environment } from '@react-three/drei'
 
 export default function Home () {
 
   const [audio, setAudio] = useState(null)
   const [access, setAccess] = useState(false)
   const [questionAudio, setQuestionAudio] = useState(null)
+
+  const Scene = () => {
+    const fbx = useLoader(FBXLoader, 'NIVA.fbx')
+    return <primitive object={fbx} scale={0.05} />
+  }
 
   const {
     transcript,
@@ -37,9 +42,11 @@ export default function Home () {
   const img1 = responding
 
   function sendQuestion (question) {
-    axios.post('http://127.0.0.1:5000/profile', null, { params: {
-      questionText: question
-    }})
+    axios.post('http://127.0.0.1:5000/profile', null, {
+      params: {
+        questionText: question
+      }
+    })
       .then((response) => {
         const res = response.data
         console.log(res)
@@ -54,7 +61,7 @@ export default function Home () {
   }
 
   function checkPermissions () {
-    const permissions = navigator.mediaDevices.getUserMedia({audio: true, video: false})
+    const permissions = navigator.mediaDevices.getUserMedia({ audio: true, video: false })
     permissions.then((stream) => {
       setAccess(!access)
     })
@@ -86,7 +93,7 @@ export default function Home () {
   function stopMicrophone () {
     SpeechRecognition.stopListening()
     var img = document.getElementById('image')
-    if(transcript !== null) {
+    if (transcript !== null) {
       sendQuestion(transcript)
     }
     audio.getTracks().forEach(track => track.stop())
@@ -107,12 +114,6 @@ export default function Home () {
     }
   }
 
-  const Scene = () => {
-    const fbx = useLoader(FBXLoader, 'NIVA.fbx')
-  
-    return <primitive object={fbx} scale={0.05} />
-  }
-
   checkPermissions()
 
   // model.then(object=>{
@@ -123,25 +124,31 @@ export default function Home () {
 
   return (
     <div className="App">
-      <Notification isShowModal={access} askAccess={checkPermissions}/>
+      <Canvas className="app-canvas">
+        <Suspense fallback={null}>
+          <Scene id='image' onClick={toggleMicrophone}/>
+          <OrbitControls />
+          <Environment
+            files="https://cdn.jsdelivr.net/gh/Sean-Bradley/React-Three-Fiber-Boilerplate@environment/public/img/venice_sunset_1k.hdr"
+            background
+            blur={0.5}
+          />
+          <directionalLight position={[3.3, 1.0, 4.4]} />
+        </Suspense>
+      </Canvas>
+      <Notification isShowModal={access} askAccess={checkPermissions} />
       {!audio}
       {audio ? <AudioAnalyser audio={audio} /> : ''}
       {/* <primitive object={Scene}/> */}
       <p id='transcript'>{transcript}</p>
-      <Canvas>
-        <Suspense fallback={null}>
-          <Scene onClick={toggleMicrophone}/>
-          <OrbitControls />
-          <Environment background = {true} preset={'apartment'} />
-        </Suspense>
-      </Canvas>
       {/* <div className="controls">
-        <button id = "imageButton" className="App-logo"> <img id = "image" src ={img0} onClick={toggleMicrophone}/>
-        </button>
-      </div> */}
+      <button id = "imageButton" className="App-logo"> <img id = "image" src ={img0} onClick={toggleMicrophone}/>
+      </button>
+    </div> */}
       {questionAudio != null && <p id='transcript'>What I heard is: {questionAudio}</p>
       }
     </div>
+
   )
 
 }

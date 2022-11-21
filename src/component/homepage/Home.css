@@ -23,12 +23,28 @@
       animation: App-logo-spin infinite 3s linear;
   }
 
-  .fbx {
-    margin: 0;
-    padding: 0;
-    width: 100vh;
-    height: 300vh;
-    box-sizing: border-box;
+  body {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .FBXContainer{
+    width: 100vw;
+    height: 100vh;
+  }
+
+  
+  
+  div {
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+  }
+  
+  html {
+  margin: 0;
+  padding: 0;
+  display: contents;
   }
 
   .App {
@@ -43,8 +59,8 @@
     /* animation: bg-gradient 12s ease infinite; */
     margin: 0;
     padding: 0;
-    width: 100vh;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     box-sizing: border-box;
   }
   
@@ -74,7 +90,7 @@
     width: fit-content;
     word-break: break-word;
     border: 0;
-  } */ */
+  } */
 
   #transcript {
     font-family: 'Courier New', Courier, monospace;
