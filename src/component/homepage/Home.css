@@ -26,6 +26,7 @@
   body {
     width: 100vw;
     height: 100vh;
+    margin: 0px;
   }
 
   .FBXContainer{
@@ -33,8 +34,6 @@
     height: 100vh;
   }
 
-  
-  
   div {
     height: 100%;
     width: 100%;
@@ -48,15 +47,15 @@
   }
 
   .App {
-    /* background: linear-gradient(-45deg, #0F2027, #20002c, #2D2D20,  #FFFFFF); */
-    /* background-size: 400% 400%; */
-    /* min-height: 100vh; */
-    /* display: initial; */
-    /* flex-direction: column; */
-    /* align-items: center; */
-    /* justify-content: center; */
-    /* font-size: calc(10px + 2vmin); */
-    /* animation: bg-gradient 12s ease infinite; */
+    background: linear-gradient(-45deg, #0F2027, #20002c, #2D2D20,  #FFFFFF); 
+    background-size: 400% 400%;
+    min-height: 100vh;
+    display: initial;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    animation: bg-gradient 12s ease infinite;
     margin: 0;
     padding: 0;
     width: 100%;
