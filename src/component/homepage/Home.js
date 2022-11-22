@@ -3,24 +3,14 @@ import axios from 'axios'
 import AudioAnalyser from '../voice/AudioAnalyser'
 import responding from '../../resources/responding.svg'
 import logo2 from '../../resources/NIVAlogo.svg'
-// import Waiting from '../text/Waiting'
 import Notification from '../modal/Notification'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import './Home.css'
-// import idling from '../../resources/NIVA.fbx'
-// import { useLoader } from '@react-three/fiber'
-// import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
-// import { PrimitiveProps } from '@react-three/fiber'
-// import model from '../../Loader'
-// import App from '../../App'
-// import { Box } from '@react-three/drei'
-// import { Camera } from 'three'
 import { Canvas } from '@react-three/fiber'
-import { useLoader } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
-import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
 import { Suspense } from 'react'
 import { Environment } from '@react-three/drei'
+import { Model } from '../../resources/NIVA'
 
 export default function Home () {
 
@@ -28,10 +18,10 @@ export default function Home () {
   const [access, setAccess] = useState(false)
   const [questionAudio, setQuestionAudio] = useState(null)
 
-  const Scene = () => {
-    const fbx = useLoader(FBXLoader, 'NIVA.fbx')
-    return <primitive object={fbx} scale={0.05} />
-  }
+  // function Model () {
+  //   const { scene } = useGLTF('NIVA.gltf')
+  //   return <primitive object={scene} />
+  // }
 
   const {
     transcript,
@@ -124,9 +114,10 @@ export default function Home () {
 
   return (
     <div className="App">
-      <Canvas className="app-canvas">
+      <Canvas className="app-canvas" camera={{position: [0, -23, 30], fov: 5 }}>
         <Suspense fallback={null}>
-          <Scene id='image' onClick={toggleMicrophone}/>
+          {/* <Scene id='image' onClick={toggleMicrophone}/> */}
+          <pointLight position={[10, 10, 10]} intensity={1.3} />
           <OrbitControls />
           <Environment
             files="https://cdn.jsdelivr.net/gh/Sean-Bradley/React-Three-Fiber-Boilerplate@environment/public/img/venice_sunset_1k.hdr"
@@ -134,12 +125,12 @@ export default function Home () {
             blur={0.5}
           />
           <directionalLight position={[3.3, 1.0, 4.4]} />
+          <Model onClick={toggleMicrophone}/>
         </Suspense>
       </Canvas>
       <Notification isShowModal={access} askAccess={checkPermissions} />
       {!audio}
       {audio ? <AudioAnalyser audio={audio} /> : ''}
-      {/* <primitive object={Scene}/> */}
       <p id='transcript'>{transcript}</p>
       {/* <div className="controls">
       <button id = "imageButton" className="App-logo"> <img id = "image" src ={img0} onClick={toggleMicrophone}/>
