@@ -26,7 +26,7 @@ pip install tensorflow=2.9.1
 pip install transformers==4.3.3
 pip install scikit-learn
 pip install numpy
-pip install gTTS
+pip install google-cloud-texttospeech
 pip install pydub
 pip install simpleaudio
 
@@ -38,7 +38,7 @@ pip install tensorflow
 pip install transformers==4.3.3
 pip install scikit-learn
 pip install numpy
-pip install gTTS
+pip install google-cloud-texttospeech
 pip install pydub
 pip install simpleaudio
 ```
