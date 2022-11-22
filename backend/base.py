@@ -6,10 +6,15 @@ from flask import request
 
 import QA_model
 import text_to_speech
+from transformers import pipeline
+
 
 app = Flask(__name__)
 # cors = CORS(app)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
+# load model into kernel
+question_answerer_model = pipeline('question-answering')
+general_question_model = pipeline('fill-mask', model='bert-base-uncased')
 
 app.config['CORS_HEADERS'] = 'Content-Type'
 
@@ -19,7 +24,7 @@ def my_profile():
     questionText = request.args.get('questionText')
     questionAudio = request.args.get('questionAudio')
     # question answering
-    res = QA_model.answer(questionText)
+    res = QA_model.answer(questionText, question_answerer_model, general_question_model)
     # text to audio
     voice_file = "voice/voice_output.mp3"
     text_to_speech.synthesize_text(res, voice_file)
