@@ -20,6 +20,7 @@ module.exports = {
   'rules': {
     'react/display-name': 'off',
     'react/prop-types': 'off',
+    'react/no-unknown-property': 0,
     // 定义对象的set存取器属性时，强制定义get
     'accessor-pairs': 2,
     // 指定数组的元素之间要以空格隔开(,后面)， never参数：[ 之前和 ] 之后不能带空格，always参数：[ 之前和 ] 之后必须带空格

@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "snappy-cosine-369221",
+  "private_key_id": "3b91c9edf80afad42fe66009fa59a5abd5191a39",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCqEijHkiuTZCOo\n1/Bv/G1NUEREk8duT5e9bFogGBWiLX41YT5iUmllmrSSQKO/2aS9zpuQIoE5Deg3\nY2Dz/SxzczW7KNHUyM2Ku5Xh9qWU1acnRqIaPuauPRRiG4sSZo/rL01Y8x0bgxc6\nr+MRURotkfdErRDD1Bqkzutfxs9BKnWz8+ckJ6pAaHOrksEU8UVTTaRhoUEyMlZ2\nuBwwX+ijsneETVOYV8b9qOMNgk+QKwnLmC1SZl93OvqUEj/6/hfVPZEwgHFqjKM6\npW/fueWsdxIp6iwetFiGT0CaJLBtI3QRwd2v7x+izXLfifQbmKlP7GLZThwjWg35\nIValTiD3AgMBAAECggEABEJGfXzrv29QtJ/iYwOIvy4P5OxodZrjpg2KZ5Gtf61b\noug9ANxRzFwRQopWL23lV2V5oCSPujHey1L0m2zkdJMBg57UO7ENnfhFmsOA8QG1\nWQvxRO6nUIdctSTobiezBJo0zydDZtbOZEdW9y43QBs5fHbzBlxk5b9SxfK7akUk\noGmj39ZuotAXvu1n+FdcHuTY1v5t4rCVx57dXp62zmkFN+5Brf12vkPPk/MtMwNk\nncQ+z3+ordBn+5btl3HRLi7VDH1yAGMWvQXwR9SR9Feio6Q216398QV5TIH8qJ1J\nRmNUWEHciKsC/zUR6h7obzmcSlXHNsQZc6/s5w4PsQKBgQDeRuWLbtBy0IajUgnn\nj+cITUVTKKLN8aDmihTWh+CC9KSkwrdMbXFtr8sOtyHJBMtYGBSB8dJOM/DeS91y\nPdKYN6W9H/Bm7FCfSGDiZeThFGvkwBP0wRCliIntsewgtED/BtzKySvNeEkNPbLu\n84B55A0bGDYT2tW3LObdxXQ70QKBgQDD35zVTapwhBKaPskAjkUNH0FfNU/yLkUw\nxQvwzcqYIEZ6cwz6AA8hAmL2Z+LG7/HcAC1lllIOsXsR6NxAxd4OwmDBRSGNQxNP\nMUI+Up/wJbes6lCJy5V1om2IDKa2x/ImryHl9rgsrDaCCiHtPCP0IC+IcfjT0Bkx\nu3P3GL1qRwKBgAkWDtYXTpAS9B4DAYKkwEX3mqjelWEjyncCF/35CfVweLZ/eyy1\noJhiQkO0ur3T41gTi+sP7o/h0avUoBXGbzBnve+wOYyLhnQsakF29tc4lXyBWY98\nwOhzX2gHCOcBV1LVffsQJCk/DIVtCz53V74j02FTKQrAvFHDlSBlrO2xAoGAJGWe\n7Pv7meDQ3ByimRnWtvOB4EE109jJPqC+8UYsSUxmDEbouGPea9HXtdXkC/d2R904\nklH2eYh9R/yvQNIDy1ZPSFqiO2+lXOfYWWBdG/DGSrlXseNEqJFALTG8oOZSluGg\nOO05mAOANXXQjBbKz4hTjNUw2Zsns1gT2mycde0CgYEAs4n4eASP7awNPtQ+CXgg\nj+skTsCmRSI+dgg2VBBv+5kOxUnWUNhqIB8breZiK/krRyW4++4XE8Phb8W2d2Wx\nNBTEL0Ri2KPfUQ4/bPzIt1cMKZfk4SbkU5cxEZkMp9Yqxl/T1MdP2ONfC9NiCSAr\nsA6KqALmqe2dnTxG1aOynrs=\n-----END PRIVATE KEY-----\n",
+  "client_email": "niva-service@snappy-cosine-369221.iam.gserviceaccount.com",
+  "client_id": "114014874841778742737",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/niva-service%40snappy-cosine-369221.iam.gserviceaccount.com"
+}

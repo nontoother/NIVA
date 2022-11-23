@@ -3,3 +3,21 @@
     margin: 0;
   }
   
+  body {
+    width: 0vw;
+    height: 0vh;
+    /* block-size: fit-content !important; */
+  }
+
+  html,
+  body {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important; 
+  }
+
+  .root {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important; 
+  }
