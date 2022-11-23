@@ -49,7 +49,7 @@ def play_voice_from_file(audio_file):
 
 
 def synthesize_text(text, voice_file):
-    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'client_service_key.json'
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '../client_service_key.json'
     client = texttospeech.TextToSpeechClient()
 
     input_text = texttospeech.SynthesisInput(text=text)

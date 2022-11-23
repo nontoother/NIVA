@@ -26,7 +26,7 @@ def my_profile():
     # question answering
     res = QA_model.answer(questionText, question_answerer_model, general_question_model)
     # text to audio
-    voice_file = "voice/voice_output.mp3"
+    voice_file = "../voice/voice_output.mp3"
     text_to_speech.synthesize_text(res, voice_file)
     text_to_speech.play_voice_from_file(voice_file)
 
