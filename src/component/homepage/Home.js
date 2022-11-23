@@ -10,7 +10,8 @@ import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import { Suspense } from 'react'
 import { Environment } from '@react-three/drei'
-import { Model } from '../icon/NIVA'
+import { Model } from '../icon/NIVA-No-Lights-VO'
+import hdr from '../../resources/studio_small_08_4k.hdr'
 
 export default function Home () {
 
@@ -121,7 +122,7 @@ export default function Home () {
           <pointLight position={[10, 10, 10]} intensity={1.3} />
           <OrbitControls />
           <Environment
-            files="https://cdn.jsdelivr.net/gh/Sean-Bradley/React-Three-Fiber-Boilerplate@environment/public/img/venice_sunset_1k.hdr"
+            files={hdr}
             background
             blur={0.5}
           />
