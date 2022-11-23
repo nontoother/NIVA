@@ -18,15 +18,12 @@ export function Model (props) {
 
   let multiplier = 0.34
   useFrame((state, delta) => {
-
     if(status === NIVA_IDLE) {
       multiplier = 0.34
       group.current.rotation.x += multiplier * delta
-      console.log('idle')
     } else if(status === NIVA_LISTENING) {
       multiplier = 4
       group.current.rotation.x += multiplier * delta
-      console.log('listening')
     }
   })
 
