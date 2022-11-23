@@ -6,7 +6,7 @@ import React, { useRef, useState } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import './Status'
-import { NIVA_IDLE, NIVA_LISTENING, NIVA_PROCESSING, NIVA_SPEAKING } from './Status'
+import { NIVA_IDLE, NIVA_LISTENING } from './Status'
 
 export function Model (props) {
 
@@ -35,11 +35,10 @@ export function Model (props) {
     if(status === NIVA_IDLE) {
       setStatus(NIVA_LISTENING)
     } else if(status === NIVA_LISTENING) {
-      setStatus(NIVA_PROCESSING)
-    } else if(status === NIVA_PROCESSING) {
-      setStatus(NIVA_SPEAKING)
-    } else {
+      // setStatus(NIVA_PROCESSING)
       setStatus(NIVA_IDLE)
+    } else {
+      // setStatus(NIVA_IDLE)
     }
   }
 
