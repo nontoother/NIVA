@@ -10,7 +10,7 @@ import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import { Suspense } from 'react'
 import { Environment } from '@react-three/drei'
-import { Model } from '../../resources/NIVA'
+import { Model } from '../icon/NIVA'
 
 export default function Home () {
 
@@ -126,7 +126,7 @@ export default function Home () {
             blur={0.5}
           />
           <directionalLight position={[3.3, 1.0, 4.4]} />
-          <Model onClick={toggleMicrophone}/>
+          <Model toggleMicrophone={toggleMicrophone}/>
         </Suspense>
       </Canvas>
       <Notification isShowModal={access} askAccess={checkPermissions} />
