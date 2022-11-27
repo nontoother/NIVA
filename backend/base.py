@@ -25,10 +25,15 @@ def my_profile():
     questionAudio = request.args.get('questionAudio')
     # question answering
     res = QA_model.answer(questionText, question_answerer_model, general_question_model)
+
     # text to audio
-    voice_file = "../voice/voice_output.mp3"
-    text_to_speech.synthesize_text(res, voice_file)
-    text_to_speech.play_voice_from_file(voice_file)
+    raw_voice_file = "../voice/voice_output.mp3"
+    modified_voice_file = "../voice/modified_voice_output.mp3"
+
+    gender = random.randint(0, 1)  # 0 is female and 1 is male
+    text_to_speech.synthesize_text(res, raw_voice_file, gender)
+    text_to_speech.change_pitch(raw_voice_file, modified_voice_file, gender)
+    text_to_speech.play_voice_from_file(modified_voice_file)
 
     response_body = {
         "questionText": res,
