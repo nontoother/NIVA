@@ -10,9 +10,6 @@ venv/
 .venv/
 env*
 
-# voice
-voice/
-
 # testing
 /coverage
 
