@@ -5,10 +5,29 @@ from niva_question import get_answer_about_niva
 from general_question import get_general_question_answer
 from transformers import pipeline
 
+'''
+We have three strategies to answer the questions. We divided questions into three types as following: 
+1.stored QA pair:
+For the stored QA pair part, we use a json file to store some specific question-answer pairs, as the question we provide
+may not be exactly the same as what we stored in json, we use TF-IDF to calculate the similarity between the given 
+question and stored question. Once the result is greater than 0.3 which is our threshold, we would regard the given 
+question as stored one, and randomly return an answer from the stored answer list.
 
-# 1.stored QA pair
-# 2.question about Niva
-# 3.normal question
+2.question about Niva:
+For the question about Niva part, we use a model in hugging face which is called question-answering, the strategy we use
+is if we find any word like “you”, “your”, “niva” in the given question, we would regard this question as a question
+about niva, then we would use the second way to get a answer. We stored some niva’s basic information in a json file as
+niva’s context, and while calling this function, we would provide the stored information as context to the model, the
+model would extract corresponding information according to the context and give out an answer.
+
+3.normal question:
+As for the last part, we use BERT as our general question answering model. BERT is a model to fill a masked area in a 
+sentence. So we need to do is to modify the interrogative sentence into declarative sentence and put [mask] in the 
+position where supposed to be answered. Then we can pass the declarative sentence into BERT and get the answer.
+
+'''
+
+
 def answer(question, question_answer_model, general_question_model):
     # get question from speech_text_conversion
     stored_question_list = get_question_list()
