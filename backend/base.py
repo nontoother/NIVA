@@ -23,7 +23,10 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 def my_profile():
     questionText = request.args.get('questionText')
     # question answering
-    res = QA_model.answer(questionText, question_answerer_model, general_question_model)
+    try:
+        res = QA_model.answer(questionText, question_answerer_model, general_question_model)
+    except:
+        res = "I am sorry I don't get this question."
 
     # text to audio
     raw_voice_file = "voice/voice_output.mp3"

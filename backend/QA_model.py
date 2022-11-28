@@ -45,10 +45,15 @@ def main():
     # main function is just for testing the model part
     questions = ["what is your gender?", "when is your birthday?", "what does niva stands for?", "what is your name?",
                  "What are you wearing?", "where is the capital of China?", "Do you have a boyfriend?"]
+    # robust test questions
+    # questions = ["hello hello hello", "I don't know"]
     question_answerer_model = pipeline('question-answering')
     general_question_model = pipeline('fill-mask', model='bert-base-uncased')
     for question in questions:
-        res = answer(question, question_answerer_model, general_question_model)
+        try:
+            res = answer(question, question_answerer_model, general_question_model)
+        except:
+            res = "I am sorry I don't get this question."
         print(question, res)
 
 
