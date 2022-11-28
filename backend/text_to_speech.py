@@ -55,7 +55,7 @@ def random_select_voice(gender):
 
 
 def synthesize_text(text, voice_file, gender):
-    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '../client_service_key.json'
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'client_service_key.json'
     client = texttospeech.TextToSpeechClient()
 
     input_text = texttospeech.SynthesisInput(text=text)

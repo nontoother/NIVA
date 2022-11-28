@@ -27,8 +27,8 @@ def my_profile():
     res = QA_model.answer(questionText, question_answerer_model, general_question_model)
 
     # text to audio
-    raw_voice_file = "../voice/voice_output.mp3"
-    modified_voice_file = "../voice/modified_voice_output.mp3"
+    raw_voice_file = "voice/voice_output.mp3"
+    modified_voice_file = "voice/modified_voice_output.mp3"
 
     gender = random.randint(0, 1)  # 0 is female and 1 is male
     text_to_speech.synthesize_text(res, raw_voice_file, gender)
