@@ -24,6 +24,7 @@ python3 -m venv venv
 pip install Flask
 pip install tensorflow==2.9.1
 pip install transformers==4.3.3
+pip install protobuf==3.20.1
 pip install scikit-learn
 pip install numpy
 pip install google-cloud-texttospeech
@@ -36,6 +37,7 @@ venv\Scripts\activate
 pip install Flask
 pip install tensorflow==2.9.1
 pip install transformers==4.3.3
+pip install protobuf==3.20.1
 pip install scikit-learn
 pip install numpy
 pip install google-cloud-texttospeech
@@ -73,7 +75,7 @@ npm install
 flask run
 ```
 
-### Run the Application
+### Open a new terminal and run the Application
 
 ```
 npm start
