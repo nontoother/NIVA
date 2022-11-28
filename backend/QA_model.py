@@ -23,8 +23,9 @@ def answer(question, question_answer_model, general_question_model):
 
 
 def main():
+    # main function is just for testing the model part
     questions = ["what is your gender?", "when is your birthday?", "what does niva stands for?", "what is your name?",
-                 "what does niva aims to?", "where is the capital of China?"]
+                 "What are you wearing?", "where is the capital of China?", "Do you have a boyfriend?"]
     question_answerer_model = pipeline('question-answering')
     general_question_model = pipeline('fill-mask', model='bert-base-uncased')
     for question in questions:

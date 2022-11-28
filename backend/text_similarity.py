@@ -10,6 +10,7 @@ import numpy as np
 def get_question_list():
     question_list = []
     with open('context/QA_pairs.json', 'r') as qa:
+    # with open('../context/QA_pairs.json', 'r') as qa:
         qa_pairs = json.load(qa)["QAlist"]
         for i, pair in enumerate(qa_pairs):
             question_list.append(pair["question"])
@@ -32,19 +33,10 @@ def calculate_similarity(text, question_list):
 
 
 def get_stored_answer(result):
-    question_list = get_question_list()
-    # result = calculate_similarity(question, question_list)
     # the threshold to answer the question in given QA pairs
-    # if max(result) > 0.1:
     most_similar_question = np.argmax(result)
+    # with open('../context/QA_pairs.json', 'r') as qa:
     with open('context/QA_pairs.json', 'r') as qa:
         qa_pairs = json.load(qa)["QAlist"]
         answer_list = qa_pairs[most_similar_question]["answer"]
         return random.choice(answer_list)
-    # else:
-    #     return None
-
-
-# res = get_context("What is your sex?")
-# res = get_stored_answer("When is your birthday?")
-# print(res)

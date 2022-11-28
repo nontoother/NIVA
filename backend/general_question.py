@@ -3,7 +3,7 @@ import nltk
 be_list = ['is', 'was', 'am', 'is', 'are', 'was', 'were', 'be']
 do_list = ['do', 'does', 'did', 'done', 'doing']
 
-
+# modify function is used to make interrogative sentences into declarative sentences
 def modify(inputStr, answerStr):
     inputStr = inputStr.strip().lower()
     answerStr = str(answerStr).strip().lower()
