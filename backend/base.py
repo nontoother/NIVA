@@ -22,7 +22,6 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 @cross_origin()
 def my_profile():
     questionText = request.args.get('questionText')
-    questionAudio = request.args.get('questionAudio')
     # question answering
     res = QA_model.answer(questionText, question_answerer_model, general_question_model)
 
@@ -37,7 +36,6 @@ def my_profile():
 
     response_body = {
         "questionText": res,
-        "questionAudio": questionAudio,
     }
 
     return response_body
