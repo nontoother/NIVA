@@ -10,7 +10,7 @@ We have three strategies to answer the questions. We divided questions into thre
 1.stored QA pair:
 For the stored QA pair part, we use a json file to store some specific question-answer pairs, as the question we provide
 may not be exactly the same as what we stored in json, we use TF-IDF to calculate the similarity between the given 
-question and stored question. Once the result is greater than 0.3 which is our threshold, we would regard the given 
+question and stored question. Once the result is greater than 0.6 which is our threshold, we would regard the given 
 question as stored one, and randomly return an answer from the stored answer list.
 
 2.question about Niva:
