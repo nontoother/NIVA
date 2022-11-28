@@ -70,7 +70,7 @@ npm install
 ### Initialize the Backend
 
 ```
-npm run start-backend
+flask run
 ```
 
 ### Run the Application
@@ -79,5 +79,5 @@ npm run start-backend
 npm start
 ```
 
-Now the bank app is running on http://localhost:3000
+Now the NIVA app is running on http://localhost:3000
 the backend is at http://127.0.0.1:5000/
